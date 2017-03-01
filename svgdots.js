@@ -8,9 +8,12 @@ var prevY = -1;
 	ctx.fillRect(e.clientX,e.clientY,50,50);
 };*/
 
-clear.onclick = function(){
-	ctx.beginPath();
-	ctx.clearRect(0,0,400,400);
+clear.onclick = function(e){
+    while (mySVG.hasChildNodes()){
+	mySVG.removeChild(mySVG.lastChild);
+    }
+    prevX = -1;
+    prevY = -1;
 }
 
 mySVG.onmousedown = function(e){
@@ -26,7 +29,7 @@ mySVG.onmousedown = function(e){
 	var newCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 	newCircle.setAttribute("cx", e.offsetX);
 	newCircle.setAttribute("cy", e.offsetY);
-	newCircle.setAttribute("r", 30);
+	newCircle.setAttribute("r", 15);
 	newCircle.setAttribute("fill", "#ff00ff");
 	mySVG.appendChild(newCircle);
 	prevX = e.offsetX;
